@@ -1,0 +1,20 @@
+{
+    "config": {
+    "wifi-ssid": {
+            "help": "WiFi SSID",
+            "value": "\"Galaxy Note10 Litec90b\""
+    },
+    "wifi-password": {
+            "help": "WiFi Password",
+            "value": "\"akaha3315\""
+    }
+    },
+    "target_overrides": {
+        "B_L4S5I_IOT01A": {
+            "target.components_add": ["ism43362"],
+            "ism43362.provide-default": true,
+            "target.network-default-interface-type": "WIFI",
+            "target.macros_add" : ["MBEDTLS_SHA1_C"]
+        }
+    }
+}
