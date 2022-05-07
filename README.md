@@ -10,6 +10,9 @@ Set up hotspot, connect PC to that and record the IP of PC. Use the record IP to
 
 Create MQTT server with mosquitto.conf, and run mqtt_client.py to keep subscribing and plot something when get some data.
 
-Run eRPC_client.py, with parameters like >> py eRPC_client.py <serial port to XBee A> <start/stop>
+Reset board so that board can connect to MQTT server.
+
+Run eRPC_client.py, with parameters like
+>> py eRPC_client.py \<serial port to XBee A\> <start/stop>
 
 Then we can get plot from mqtt_client.py when call stop with eRPC_client.py.
