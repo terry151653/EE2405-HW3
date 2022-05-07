@@ -17,7 +17,7 @@ class accelerometerClient(interface.Iaccelerometer):
 
     def service_on(self):
         # Build remote function invocation message.
-        request = self._clientManager.create_request()
+        request = self._clientManager.create_request(isOneway = True)
         codec = request.codec
         codec.start_write_message(erpc.codec.MessageInfo(
                 type=erpc.codec.MessageType.kInvocationMessage,
@@ -30,7 +30,7 @@ class accelerometerClient(interface.Iaccelerometer):
 
     def service_off(self):
         # Build remote function invocation message.
-        request = self._clientManager.create_request()
+        request = self._clientManager.create_request(isOneway = True)
         codec = request.codec
         codec.start_write_message(erpc.codec.MessageInfo(
                 type=erpc.codec.MessageType.kInvocationMessage,

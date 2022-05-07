@@ -50,13 +50,16 @@ void publish_message() {
     message.payloadlen = strlen(buff) + 1;
     int rc = client->publish(topic, message);
 
-    printf("rc:  %d\r\n", rc);
-    printf("Puslish message: %s\r\n", buff);
+    if (message_num % 10 == 0)
+    {
+        printf("rc: %d\r\n", rc);
+        printf("#%d Puslish message: %s\r\n", message_num, buff);
+    }
+    
     //printf("Accel: X : %d, Y : %d, Z : %d\r\n", pDataXYZ[0], pDataXYZ[1], pDataXYZ[2]);
 }
 void getAccelAndPublish(void)
 {
-    printf("in\n");
     BSP_ACCELERO_AccGetXYZ(pDataXYZ);
     publish_message();
 }
@@ -64,7 +67,7 @@ void getAccelAndPublish(void)
 void service_on(void)
 {
     StartFlag = 1;
-    AccelTicker.attach(AccelAndPublishQueue.event(getAccelAndPublish), 500ms);
+    AccelTicker.attach(AccelAndPublishQueue.event(getAccelAndPublish), 100ms);
 }
 
 void service_off(void)
@@ -113,7 +116,7 @@ int main()
     MQTTNetwork mqttNetwork(net);
     client = new MQTT::Client<MQTTNetwork, Countdown>(mqttNetwork);
     //TODO: revise host to your IP
-    const char* host = "192.168.1.33";
+    const char* host = "192.168.20.33";
     const int port=1883;
     printf("Connecting to TCP network...\r\n");
     printf("address is %s/%d\r\n", host, port);

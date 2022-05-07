@@ -10,7 +10,7 @@ mqttc = paho.Client()
 
 # Settings for connection
 # TODO: revise host to your IP
-host = "192.168.1.33"
+host = "192.168.20.33"
 topic = "Mbed"
 x = np.linspace(0,1,1000)
 y = np.linspace(0,1,1000)
